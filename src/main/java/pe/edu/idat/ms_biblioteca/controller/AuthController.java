@@ -39,7 +39,8 @@ public class AuthController {
             return "El correo ya está registrado";
         }
 
-        Rol rol = RolRepository.findByNombre("USUARIO");
+        Rol rol = rolRepository.findByNombre("USUARIO")
+                .orElseThrow(() -> new RuntimeException("Error: Rol USUARIO no encontrado."));
 
         Usuario u = new Usuario();
         u.setNombre(dto.nombre());

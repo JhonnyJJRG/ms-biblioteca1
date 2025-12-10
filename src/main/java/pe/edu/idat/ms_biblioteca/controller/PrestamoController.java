@@ -20,4 +20,11 @@ public class PrestamoController {
     public Prestamo crearPrestamo(@RequestBody PrestamoDTO dto) {
         return prestamoService.crearPrestamo(dto);
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USUARIO')")
+    @GetMapping("/mis-prestamos")
+    public java.util.List<pe.edu.idat.ms_biblioteca.entity.Prestamo> listarMisPrestamos(@RequestParam Long idUsuario) {
+
+        return prestamoService.listarPorUsuario(idUsuario);
+    }
 }

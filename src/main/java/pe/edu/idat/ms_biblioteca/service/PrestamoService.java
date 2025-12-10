@@ -44,4 +44,8 @@ public class PrestamoService {
 
         return prestamoRepository.save(p);
     }
+
+    public java.util.List<Prestamo> listarPorUsuario(Long idUsuario) {
+        return prestamoRepository.findByUsuarioId(idUsuario);
+    }
 }
