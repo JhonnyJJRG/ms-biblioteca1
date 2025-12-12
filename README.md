@@ -115,6 +115,31 @@ Para probar estos endpoints, el usuario autenticado debe tener el Rol 'ADMIN' en
         "fechaDevolucion": "2025-12-20"
     }
     ``
+### 4. Devolución de Libros (Recuperar Stock)
+Finaliza el ciclo de préstamo. El sistema valida el ID del préstamo, cambia el estado a `devuelto: true`, registra la fecha de devolución y **aumenta automáticamente el stock** del libro en 1.
+
+* **Método:** `PUT`
+* **URL:** `/prestamos/{id}/devolver`
+* **Requiere Autenticación:** SÍ (Token Bearer en Header)
+* **Body (Cuerpo):** No requiere (Se envía vacío).
+
+**Ejemplo de Respuesta Exitosa (200 OK):**
+```json
+{
+  "id": 1,
+  "fechaPrestamo": "2025-12-11",
+  "fechaDevolucion": "2025-12-15",
+  "devuelto": true,
+  "usuario": {
+    "id": 1,
+    "email": "alumno@idat.pe"
+  },
+  "libro": {
+    "id": 1,
+    "titulo": "Programación en Java",
+    "stockDisponible": 10
+  }
+}
 
 👥 Integrantes del Equipo:
 
