@@ -27,4 +27,8 @@ public class PrestamoController {
 
         return prestamoService.listarPorUsuario(idUsuario);
     }
+    @PutMapping("/{id}/devolver")
+    public Prestamo devolverLibro(@PathVariable Long id) {
+        return prestamoService.devolverPrestamo(id);
+    }
 }

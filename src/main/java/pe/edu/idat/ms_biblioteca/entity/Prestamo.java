@@ -17,14 +17,14 @@ public class Prestamo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(name = "fecha_prestamo")
     private LocalDate fechaPrestamo;
 
-    @NotNull
+    @Column(name = "fecha_devolucion")
     private LocalDate fechaDevolucion;
 
-    @NotNull
-    private Boolean devuelto;
+    @Column(nullable = false)
+    private boolean devuelto = false;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
