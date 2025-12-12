@@ -1,7 +1,6 @@
 package pe.edu.idat.ms_biblioteca.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -54,22 +54,18 @@ public class PrestamoService {
         return prestamoRepository.save(p);
     }
 
-    // Método para listar préstamos de un usuario
     public List<Prestamo> listarPorUsuario(Long idUsuario) {
         return prestamoRepository.findByUsuarioId(idUsuario);
     }
 
-    // Método para devolver libro y recuperar stock
     public Prestamo devolverPrestamo(Long idPrestamo) {
         Prestamo prestamo = prestamoRepository.findById(idPrestamo)
                 .orElseThrow(() -> new RuntimeException("Préstamo no encontrado"));
 
-        // Solo devolvemos si no ha sido devuelto ya
         if (!prestamo.isDevuelto()) {
             prestamo.setDevuelto(true); // Cambiamos estado
             prestamo.setFechaDevolucion(LocalDate.now()); // Fecha actual
 
-            // Recuperamos stock del libro
             Libro libro = prestamo.getLibro();
             libro.setStockDisponible(libro.getStockDisponible() + 1);
             libroRepository.save(libro);
